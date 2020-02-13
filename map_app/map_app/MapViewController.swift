@@ -10,7 +10,10 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
-    @IBOutlet var mapView: MKMapView!
+    @IBOutlet var mapView: MKMapView! {
+        didSet { mapView.delegate = self }
+    }
+    @IBOutlet var pointDescription: pointView!
     @IBOutlet var favoritesButton: UIButton!
     var myAnnotations = [Place]()
     
@@ -26,6 +29,11 @@ class MapViewController: UIViewController {
         mapView.showsCompass = false
         mapView.pointOfInterestFilter = .excludingAll
         self.favoritesButton.backgroundColor = UIColor.systemGray
+        
+        //initialize empty labels
+        self.pointDescription.placeDescription.text = "When you select a location, info will appear!"
+        self.pointDescription.placeLabel.text = "Pick a place!"
+        
         let locations = DataManager.sharedInstance.loadAnnotationFromPlist()
         for location in locations {
             let newPlace = Place()
@@ -49,4 +57,14 @@ class MapViewController: UIViewController {
     }
     */
 
+}
+extension MapViewController: MKMapViewDelegate {
+
+func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    var newPlace = Place()
+    newPlace = view.annotation as! Place
+    self.pointDescription.placeDescription.text = newPlace.longDescription
+    self.pointDescription.placeLabel.text = newPlace.name
+    
+}
 }

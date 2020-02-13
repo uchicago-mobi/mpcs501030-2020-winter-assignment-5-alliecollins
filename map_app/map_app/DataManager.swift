@@ -16,7 +16,6 @@ public class DataManager {
     
     //this prevents others from using the default '()'
     fileprivate init() {
-        print("are we making it here")
         self.loadAnnotationFromPlist()
     }
     
