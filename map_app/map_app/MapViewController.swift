@@ -17,6 +17,9 @@ class MapViewController: UIViewController {
     @IBOutlet var favoritesButton: UIButton!
     var myAnnotations = [Place]()
     
+    @IBAction func switchView(_ sender: Any) {
+        performSegue(withIdentifier: "mySegue", sender: self)
+    }
     override func viewWillAppear(_ animated: Bool) {
         let miles: Double = 20 * 1600
         let center = CLLocationCoordinate2DMake(41.8789, -87.6359)

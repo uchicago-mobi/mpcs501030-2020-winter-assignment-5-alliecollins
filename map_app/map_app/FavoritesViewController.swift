@@ -8,7 +8,21 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "myCell"){
+            if let label = cell.textLabel {
+                label.text = "test"
+            }
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
     @IBOutlet var favoritesTable: UITableView!
     
     override func viewDidLoad() {
@@ -17,7 +31,10 @@ class FavoritesViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func goBack(_ sender: Any) {
+        performSegue(withIdentifier: "returnSegue", sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 
