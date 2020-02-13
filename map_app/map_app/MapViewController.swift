@@ -12,6 +12,7 @@ import MapKit
 class MapViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var favoritesButton: UIButton!
+    var myAnnotations = [Place]()
     
     override func viewWillAppear(_ animated: Bool) {
         let miles: Double = 20 * 1600
@@ -25,46 +26,16 @@ class MapViewController: UIViewController {
         mapView.showsCompass = false
         mapView.pointOfInterestFilter = .excludingAll
         self.favoritesButton.backgroundColor = UIColor.systemGray
-        
-        struct ListData : Codable {
-            var places : [aPlace]?
+        let locations = DataManager.sharedInstance.loadAnnotationFromPlist()
+        for location in locations {
+            let newPlace = Place()
+            newPlace.name = location.name
+            newPlace.longDescription = location.description
+            let coord = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
+            newPlace.coordinate = coord
+            mapView.addAnnotation(newPlace)
         }
 
-        struct aPlace: Codable {
-            var name: String
-            var description: String
-            var lat: Double
-            var long: Double
-            var type: Int
-        }
-        
-        var tempList: ListData?
-        
-        if let path = Bundle.main.path(forResource:"Data", ofType: "plist"),
-            let xml = FileManager.default.contents(atPath: path),
-            let tempList = try? PropertyListDecoder().decode(ListData.self, from: xml){
-            print(tempList)
-        }
-//            let xml = FileManager.default.contents(atPath: path),
-//            let tempPlace = try? PropertyListDecoder().decode(MyPlace.self, from: xml) {
-//            print(tempPlace.name)
-//        }
-////        if let data = try? FileManager.default.contents(atPath: path) {
-////            let decoder = PropertyListDecoder()
-////            tempPlace = try? decoder.decode(MyPlace.self, from: data)
-////            print(tempPlace)
-////        }
-//
-//        let data = FileManager.default.contents(atPath: path)
-//        let tempPlace = try? PropertyListDecoder().decode(MyPlace.self, from: data)
-//        favePlaces.append(tempPlace)
-//        print(favePlaces)
-//
-//        else{
-//
-//        }
-
-        // Do any additional setup after loading the view.
     }
     
 

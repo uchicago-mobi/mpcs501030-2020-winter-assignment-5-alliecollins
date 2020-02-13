@@ -15,6 +15,7 @@
 		941BFDE523F323C400B3EB24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 941BFDE323F323C400B3EB24 /* LaunchScreen.storyboard */; };
 		941BFDED23F34BBA00B3EB24 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941BFDEC23F34BBA00B3EB24 /* MapViewController.swift */; };
 		941BFDEF23F35D9200B3EB24 /* pointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941BFDEE23F35D9200B3EB24 /* pointView.swift */; };
+		9480DC0823F4F2FA00A43F52 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9480DC0723F4F2FA00A43F52 /* FavoritesViewController.swift */; };
 		94EBFA3523F3BC710004E8CE /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EBFA3423F3BC710004E8CE /* Place.swift */; };
 		94EBFA3723F3BDBA0004E8CE /* PlaceMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EBFA3623F3BDBA0004E8CE /* PlaceMarkerView.swift */; };
 		94EBFA3923F474630004E8CE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EBFA3823F474630004E8CE /* DataManager.swift */; };
@@ -32,6 +33,7 @@
 		941BFDE623F323C400B3EB24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		941BFDEC23F34BBA00B3EB24 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		941BFDEE23F35D9200B3EB24 /* pointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pointView.swift; sourceTree = "<group>"; };
+		9480DC0723F4F2FA00A43F52 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		94EBFA3423F3BC710004E8CE /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		94EBFA3623F3BDBA0004E8CE /* PlaceMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMarkerView.swift; sourceTree = "<group>"; };
 		94EBFA3823F474630004E8CE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				94EBFA3A23F482EE0004E8CE /* Data.plist */,
 				94EBFA3423F3BC710004E8CE /* Place.swift */,
 				94EBFA3623F3BDBA0004E8CE /* PlaceMarkerView.swift */,
+				9480DC0723F4F2FA00A43F52 /* FavoritesViewController.swift */,
 				941BFDEE23F35D9200B3EB24 /* pointView.swift */,
 				941BFDEC23F34BBA00B3EB24 /* MapViewController.swift */,
 				941BFDE123F323C400B3EB24 /* Assets.xcassets */,
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				941BFDDD23F323C200B3EB24 /* ViewController.swift in Sources */,
+				9480DC0823F4F2FA00A43F52 /* FavoritesViewController.swift in Sources */,
 				94EBFA3923F474630004E8CE /* DataManager.swift in Sources */,
 				941BFDD923F323C200B3EB24 /* AppDelegate.swift in Sources */,
 				941BFDDB23F323C200B3EB24 /* SceneDelegate.swift in Sources */,

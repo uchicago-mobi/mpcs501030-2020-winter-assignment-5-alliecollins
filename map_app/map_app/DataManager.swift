@@ -7,43 +7,43 @@
 //
 
 import Foundation
+import MapKit
+let defaults = UserDefaults.standard
 
 public class DataManager {
     //Mark: - Singleton Stuff
     public static let sharedInstance = DataManager()
     
     //this prevents others from using the default '()'
-    fileprivate init() {}
-    
-    //Functions
-    func loadAnnotationFromPlist() {
-    
-        let path: String = Bundle.main.path(forResource:"Data", ofType: "plist")!
-        
-        struct MyPlaces: Codable {
-          var name: String
-          var longDescription: Int
-        }
-        
-        var favePlaces: [MyPlaces]! = []
-        
-        var tempPlace: MyPlaces?
-        
-        if let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
-          let decoder = PropertyListDecoder()
-          tempPlace = try? decoder.decode(MyPlaces.self, from: data)
-            favePlaces.append(tempPlace!)
-        }
-        
-//    var settings: MySettings?
-//
-//    if let data = try? Data(contentsOf: settingsURL) {
-//      let decoder = PropertyListDecoder()
-//      settings = try? decoder.decode(MySettings.self, from: data)
+    fileprivate init() {
+        print("are we making it here")
+        self.loadAnnotationFromPlist()
     }
     
-    //func saveFavorites()
-    //func
-//}
+    struct ListData : Codable {
+        var places : [aPlace]?
+    }
+    
+    struct aPlace: Codable {
+        var name: String
+        var description: String
+        var lat: Double
+        var long: Double
+        var type: Int
+    }
+    
+    //Functions
+    func loadAnnotationFromPlist() -> [aPlace] {
+        //citation for help with nesting: https://stackoverflow.com/questions/49186333/iterating-through-plist-file-and-storing-data-in-array-or-dictionary
+
         
+        var tempList: ListData?
+        
+        if let path = Bundle.main.path(forResource:"Data", ofType: "plist"),
+            let xml = FileManager.default.contents(atPath: path),
+            let tempList = try? PropertyListDecoder().decode(ListData.self, from: xml){
+            return tempList.places!
+        }
+        return tempList!.places!
+    }
 }
