@@ -84,7 +84,6 @@ protocol PlacesFavoritesDelegate: class {
 
 extension MapViewController: PlacesFavoritesDelegate {
     func favoritePlace(name: String){
-        print("hi")
         let locations = DataManager.sharedInstance.loadAnnotationFromPlist()
         for location in locations {
             if name == location.name {
