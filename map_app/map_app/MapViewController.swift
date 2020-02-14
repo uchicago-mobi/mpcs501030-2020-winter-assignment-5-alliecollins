@@ -13,6 +13,7 @@ class MapViewController: UIViewController {
     @IBOutlet var mapView: MKMapView! {
         didSet { mapView.delegate = self }
     }
+
     @IBOutlet var pointDescription: pointView!
     @IBOutlet var favoritesButton: UIButton!
     var myAnnotations = [Place]()
@@ -83,6 +84,18 @@ protocol PlacesFavoritesDelegate: class {
 
 extension MapViewController: PlacesFavoritesDelegate {
     func favoritePlace(name: String){
-    //update the location
+        print("hi")
+        let locations = DataManager.sharedInstance.loadAnnotationFromPlist()
+        for location in locations {
+            if name == location.name {
+                self.pointDescription.placeDescription.text = name
+                self.pointDescription.placeLabel.text = location.description
+                let coord = CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)
+                let miles: Double = 1 * 1600
+                let center = coord
+                let viewRegion = MKCoordinateRegion(center: center, latitudinalMeters: miles, longitudinalMeters: miles)
+                mapView.setRegion(viewRegion, animated: true)
+            }
     }
+}
 }
