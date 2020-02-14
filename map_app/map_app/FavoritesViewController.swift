@@ -9,16 +9,26 @@
 import UIKit
 
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    weak var delegate: PlacesFavoritesDelegate?
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        let list = defaults.object(forKey: "favePlaces") as? [String] ?? [String]()
+        if list.count == 0 {
+            return 1
+        }
+        return list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "myCell"){
-            if let label = cell.textLabel {
-                label.text = "test"
+            let list = defaults.object(forKey: "favePlaces") as? [String] ?? [String]()
+            print("do i get here at all")
+            for place in list {
+              if let label = cell.textLabel {
+                label.text = place
             }
             return cell
+        }
         }
         return UITableViewCell()
     }
@@ -27,8 +37,8 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        print("hello")
+        favoritesTable.reloadData()
     }
     
     @IBAction func goBack(_ sender: Any) {

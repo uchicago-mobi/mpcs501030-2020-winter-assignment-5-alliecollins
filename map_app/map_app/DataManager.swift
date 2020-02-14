@@ -17,6 +17,7 @@ public class DataManager {
     //this prevents others from using the default '()'
     fileprivate init() {
         self.loadAnnotationFromPlist()
+        defaults.set([Place](), forKey: "favePlaces")
     }
     
     struct ListData : Codable {
@@ -34,7 +35,6 @@ public class DataManager {
     //Functions
     func loadAnnotationFromPlist() -> [aPlace] {
         //citation for help with nesting: https://stackoverflow.com/questions/49186333/iterating-through-plist-file-and-storing-data-in-array-or-dictionary
-
         
         var tempList: ListData?
         
@@ -44,5 +44,11 @@ public class DataManager {
             return tempList.places!
         }
         return tempList!.places!
+    }
+    
+    func saveFavorites(name: String) {
+        var list = defaults.object(forKey: "favePlaces") as? [String] ?? [String]()
+        list.append(name)
+        defaults.set(list, forKey: "favePlaces")
     }
 }

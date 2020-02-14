@@ -11,11 +11,8 @@ import UIKit
 class pointView: UIView {
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var placeDescription: UILabel!
+    @IBOutlet weak var aButton: UIButton!
     
-//self.myInfo.infoButton.setTitle("OK", for: .normal)
-
-    @IBAction func favButton(_ sender: Any) {
-    }
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

@@ -17,6 +17,10 @@ class MapViewController: UIViewController {
     @IBOutlet var favoritesButton: UIButton!
     var myAnnotations = [Place]()
     
+    @IBAction func newFave(_ sender: UIButton) {
+        let name = self.pointDescription.placeLabel.text!
+        DataManager.sharedInstance.saveFavorites(name: name)
+    }
     @IBAction func switchView(_ sender: Any) {
         performSegue(withIdentifier: "mySegue", sender: self)
     }
@@ -47,7 +51,6 @@ class MapViewController: UIViewController {
             mapView.addAnnotation(newPlace)
         }
 
-    }
     
 
     /*
@@ -61,6 +64,7 @@ class MapViewController: UIViewController {
     */
 
 }
+}
 extension MapViewController: MKMapViewDelegate {
 
 func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -70,4 +74,14 @@ func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
     self.pointDescription.placeLabel.text = newPlace.name
     
 }
+}
+
+protocol PlacesFavoritesDelegate: class {
+    func favoritePlace(name: String) -> Void
+}
+
+extension MapViewController: PlacesFavoritesDelegate {
+    func favoritePlace(name: String){
+    //update the location
+    }
 }
