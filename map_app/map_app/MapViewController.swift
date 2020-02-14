@@ -20,6 +20,7 @@ class MapViewController: UIViewController {
     @IBAction func newFave(_ sender: UIButton) {
         let name = self.pointDescription.placeLabel.text!
         DataManager.sharedInstance.saveFavorites(name: name)
+        sender.isSelected = true
     }
     @IBAction func switchView(_ sender: Any) {
         performSegue(withIdentifier: "mySegue", sender: self)

@@ -11,6 +11,8 @@ import UIKit
 class FavoritesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     weak var delegate: PlacesFavoritesDelegate?
     
+    @IBOutlet var favoritesTable: UITableView!
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let list = defaults.object(forKey: "favePlaces") as? [String] ?? [String]()
         if list.count == 0 {
@@ -20,25 +22,21 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "myCell"){
-            let list = defaults.object(forKey: "favePlaces") as? [String] ?? [String]()
-            print("do i get here at all")
-            for place in list {
-              if let label = cell.textLabel {
-                label.text = place
-            }
-            return cell
-        }
-        }
-        return UITableViewCell()
+        let list = defaults.object(forKey: "favePlaces") as? [String] ?? [String]()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")
+        let place = list[indexPath.row]
+        cell?.textLabel!.text = place
+        
+        return cell!
+        
     }
-    
-    @IBOutlet var favoritesTable: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("hello")
-        favoritesTable.reloadData()
+        favoritesTable.delegate = self
+        favoritesTable.dataSource = self
+        print(defaults.object(forKey: "favePlaces") as! [String])
+        self.favoritesTable.reloadData()
     }
     
     @IBAction func goBack(_ sender: Any) {
